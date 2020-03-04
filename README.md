@@ -9,7 +9,7 @@ Akbank, Finansbank İş Bankası ve Garanti Bankası'nın sanal pos entegrasyonl
   - <h3>Gidiş</h3>
     
     ````csharp
-            Pos pos = new Pos(0, "MerchantId|MerchantPassword", "DonusSayfasi.aspx");\n
+            Pos pos = new Pos(0, "MerchantId|MerchantPassword", "DonusSayfasi.aspx");
             KKart kkart = new KKart("4444333322221111", "12", "2020", "123");
             Kullanici kullanici = new Kullanici("ornekinsan@gmail.com", "Ornek Insan");
             PosIslem posIslem = new PosIslem("1.25", "0", "aciklama", 0);
@@ -31,7 +31,7 @@ Akbank, Finansbank İş Bankası ve Garanti Bankası'nın sanal pos entegrasyonl
   - <h3>Gidiş</h3>
 
     ````csharp
-            Pos pos = new Pos(0, "MerchantId|MerchantPassword", "DonusSayfasi.aspx");
+            Pos pos = new Pos(0, "MerchantId|MerchantPassword|UserCode", "DonusSayfasi.aspx");
             KKart kkart = new KKart("4444333322221111", "12", "20", "123");
             Kullanici kullanici = new Kullanici("ornekinsan@gmail.com", "Ornek Insan");
             PosIslem posIslem = new PosIslem("1.25", "0", "aciklama", 0);
