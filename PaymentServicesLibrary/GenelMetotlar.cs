@@ -21,27 +21,6 @@ namespace PaymentServicesLibrary
             }
         }
 
-        /*
-         * Public Function GetSHA1(ByVal SHA1Data As String) As String
-
-                Dim sha As SHA1 = New SHA1CryptoServiceProvider()
-                Dim HashedPassword As String = SHA1Data
-                Dim hashbytes As Byte() = Encoding.GetEncoding("ISO-8859-9").GetBytes(HashedPassword)
-                Dim inputbytes As Byte() = sha.ComputeHash(hashbytes)
-                Return GetHexaDecimal(inputbytes)
-
-            End Function
-            Public Shared Function GetHexaDecimal(ByVal bytes As Byte()) As String
-
-                Dim s As New StringBuilder()
-                Dim length As Integer = bytes.Length
-                For n As Integer = 0 To length - 1
-                    s.Append([String].Format("{0,2:x}", bytes(n)).Replace(" ", "0"))
-                Next
-                Return s.ToString()
-
-            End Function
-         */
 
         public static String GetSHA1(String data)
         {
@@ -68,6 +47,20 @@ namespace PaymentServicesLibrary
         {
             return "46.197.222.101";
             //return HttpContext.Current.Request.UserHostAddress;
+        }
+
+        public static String SHA256Hash(String hashKey)
+        { 
+            System.Text.Encoding encoding = Encoding.UTF8;
+            byte[] plainBytes = encoding.GetBytes(hashKey);
+            System.Security.Cryptography.SHA256Managed sha256Engine = new SHA256Managed();
+            string hashedData = String.Empty;
+            byte[] hashedBytes = sha256Engine.ComputeHash(plainBytes, 0, encoding.GetByteCount(hashKey));
+            foreach (byte bit in hashedBytes)
+            {
+                hashedData += bit.ToString("x2");
+            }
+            return hashedData;
         }
 
     }

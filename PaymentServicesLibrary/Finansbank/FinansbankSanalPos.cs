@@ -30,7 +30,9 @@ namespace PaymentServicesLibrary.Finansbank
             String strFailUrl = GenelMetotlar.getDomain() + "/" + Cpos.PosDonus; //dönüş                                                           //Language_FailUrl
             String strOrderId = "";                                                            //Siparis Numarasi
             String strOrgOrderId = "";                                                      //Orijinal Islem Siparis Numarasi
-            String strPurchAmount = CPosIslem.Odeme; //miktar                                                               //Tutar
+            String strAmount = CPosIslem.Odeme ; //miktar                                                               //Tutar
+            String strPurchAmount = (double.Parse(strAmount)/100).ToString().Replace(".", ",");
+            
             String strLang = "TR";                                                                  //Language_Lang
 
             String strrnd = DateTime.Now.Ticks.ToString();
@@ -155,9 +157,9 @@ namespace PaymentServicesLibrary.Finansbank
                 Yanit.Hata = "3D ve ödeme işlemi başarısız. -->" + nvc["ErrMsg"];
             }
 
-            Yanit.PosID = int.Parse(HttpContext.Current.Session["POSID"].ToString());//Session'dan al.
-            HttpContext.Current.Session["POSID"] = "";
-            HttpContext.Current.Session["EkBilgiler"] = "";
+            //Yanit.PosID = int.Parse(HttpContext.Current.Session["POSID"].ToString());//Session'dan al.
+            //HttpContext.Current.Session["POSID"] = "";
+            //HttpContext.Current.Session["EkBilgiler"] = "";
             //Session'u sıfırla.
 
 

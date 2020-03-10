@@ -63,8 +63,9 @@ namespace PaymentServicesLibrary.Akbank
                 "<input type=\"hidden\" id=\"Ecom_Payment_Card_ExpDate_Month\" name=\"Ecom_Payment_Card_ExpDate_Month\" value=\"" + Ecom_Payment_Card_ExpDate_Month + "\"  />";
 
            
-
+            
             String[] EkBilgiler = CPosIslem.EKBilgiler.Split('|');
+
             foreach(String bilgi in EkBilgiler)
             {
                 String[] alanlar = bilgi.Split('=');
@@ -72,7 +73,7 @@ namespace PaymentServicesLibrary.Akbank
                 //"<input type='hidden' name='" & alanlar(0) & "' value='" & alanlar(1) & "'/>"
 
             }
-
+            
 
             formContent += "</form>" +
             "<script type=\"text/javascript\">document.getElementById(\"parameters\").submit();</script>";
@@ -126,7 +127,7 @@ namespace PaymentServicesLibrary.Akbank
             {
                 Yanit.Onay = 0;
                 Yanit.IslemNo = "0";
-                Yanit.Hata = HttpContext.Current.Request.Form["ErrMsg"].Replace("'", "");
+                Yanit.Hata = "Hash hatası.";
             }
 
             String mdStatus = HttpContext.Current.Request.Form.Get("mdStatus");
@@ -144,27 +145,27 @@ namespace PaymentServicesLibrary.Akbank
                     Yanit.IslemNo = HttpContext.Current.Request.Form.Get("AuthCode");
                     Yanit.Hata = "Hata yok";
                     Yanit.detay = "";
-                    Yanit.Odeme = Double.Parse(HttpContext.Current.Request.Form.Get("amount"));
+                    Yanit.Odeme = Double.Parse(HttpContext.Current.Request.Form.Get("amount")) / 100;
                 }
                 else
                 {
                     Yanit.Onay = 0;
                     Yanit.IslemNo = "0";
-                    Yanit.Hata = HttpContext.Current.Request.Form["ErrMsg"].Replace("'", "");
+                    Yanit.Hata = "İşlem Onaylanmadı.";
                 }
             }
             else
             {
                 Yanit.Onay = 0;
                 Yanit.IslemNo = "0";
-                Yanit.Hata = HttpContext.Current.Request.Form["ErrMsg"].Replace("'", "");
+                Yanit.Hata = "3D Secure'de hata.";
                 //f.bul_deg
             }
 
-            Yanit.PosID = int.Parse(HttpContext.Current.Session["POSID"].ToString());//"Session'daki POSID Parametresi yazılmalı";
+            //Yanit.PosID = int.Parse(HttpContext.Current.Session["POSID"].ToString());//"Session'daki POSID Parametresi yazılmalı";
             //Session'daki POSID ve EkBilgiler parametreleri değiştirilecek.
-            HttpContext.Current.Session["POSID"] = "";
-            HttpContext.Current.Session["EkBilgiler"] = "";
+            //HttpContext.Current.Session["POSID"] = "";
+            //HttpContext.Current.Session["EkBilgiler"] = "";
 
             return Yanit;
         }

@@ -115,17 +115,27 @@ namespace PaymentServicesLibrary.Garanti
             String strNumber = "";
             String strExpireDate = "";
             String strCVV2 = "";
-            String strAuthenticationCode = HttpUtility.UrlEncode(nvc["cavv"]);
+            //String strAuthenticationCode = HttpUtility.UrlEncode(nvc["cavv"]);
             String strSecurityLevel = HttpUtility.UrlEncode(nvc["eci"]);
 
             String strTxnID = HttpUtility.UrlEncode(nvc["xid"]);
-            String strMD = HttpUtility.UrlEncode(nvc["md"]);
+            //String strMD = HttpUtility.UrlEncode(nvc["md"]);
             String strMDStatus = nvc["mdstatus"];
             String strMDStatusText = nvc["mdErrorMsg"];
             String strHostAddress = "https://sanalposprov.garanti.com.tr/VPServlet";
 
-            String SecurityData = GenelMetotlar.GetSHA1(strProvisionPassword + _strTerminalID).ToUpper();
-            String HashData = GenelMetotlar.GetSHA1(strTerminalID + strOrderID + strAmount + strSuccessURL + strErrorURL + strType + strInstallmentCount + strStoreKey + SecurityData).ToUpper();
+            String strAuthCode = nvc["authcode"];
+            String strProcReturnCode = nvc["procreturncode"];
+            String strResponse = nvc["response"];
+            String strCavv = nvc["cavv"];
+            String strEci = nvc["eci"];
+            String strMd = nvc["md"];
+            String strRnd = nvc["rnd"];
+
+
+            //String SecurityData = GenelMetotlar.GetSHA1(strProvisionPassword + _strTerminalID).ToUpper();
+            //clientid: oid: authcode: procreturncode: response: mdstatus: cavv: eci: md: rnd:
+            String HashData = GenelMetotlar.GetSHA1(strTerminalID + strOrderID + strAuthCode + strProcReturnCode + strResponse + strMDStatus + strCavv + strEci + strMd + strRnd).ToUpper();
 
             if (strMDStatus.Equals("1"))
             {
@@ -165,9 +175,8 @@ namespace PaymentServicesLibrary.Garanti
             }
 
             String strHashData = nvc["secure3dhash"];
-            String validateHashData = GenelMetotlar.GetSHA1(strTerminalID + strOrderID + strAmount + strSuccessURL + strErrorURL + strType + strInstallmentCount + strStoreKey + SecurityData).ToUpper();
 
-            if (strHashData.Equals(validateHashData))
+            if (strHashData.Equals(HashData))
             {
                 if (strMDStatus.Equals("1") || strMDStatus.Equals("2") || strMDStatus.Equals("3") || strMDStatus.Equals("4"))
                 {
@@ -228,10 +237,10 @@ namespace PaymentServicesLibrary.Garanti
                                 "<CardholderPresentCode>" + strCardholderPresentCode + "</CardholderPresentCode>" +
                                 "<MotoInd>" + strMotoInd + "</MotoInd>" +
                                 "<Secure3D>" +
-                                    "<AuthenticationCode>" + strAuthenticationCode + "</AuthenticationCode>" +
+                                    "<AuthenticationCode>" + strAuthCode + "</AuthenticationCode>" +
                                     "<SecurityLevel>" + strSecurityLevel + "</SecurityLevel>" +
                                     "<TxnID>" + strTxnID + "</TxnID>" +
-                                    "<Md>" + strMD + "</Md>" +
+                                    "<Md>" + strMd + "</Md>" +
                                 "</Secure3D>" +
                             "</Transaction>" +
 
@@ -256,8 +265,8 @@ namespace PaymentServicesLibrary.Garanti
                             Yanit.Onay = 1;
                             Yanit.IslemNo = strOrderID;
                             Yanit.Hata = strMDStatusText;
-                            Yanit.detay = content;
-                            Yanit.Odeme = int.Parse(strAmount) / 100;
+                            Yanit.detay = strAmount + " - " + "..........";
+                            Yanit.Odeme = double.Parse(strAmount) / 100;
                         }
                         else
                         {
@@ -271,27 +280,28 @@ namespace PaymentServicesLibrary.Garanti
                     {
                         Yanit.Onay = 0;
                         Yanit.IslemNo = strOrderID;
-                        Yanit.Hata = strMDStatusText;
+                        Yanit.Hata = strMDStatusText + " ReasonCode 00 içermiyor";
                     }
                 }
                 else
                 {
                     Yanit.Onay = 0;
                     Yanit.IslemNo = strOrderID;
-                    Yanit.Hata = strMDStatusText;
+                    Yanit.Hata = strMDStatusText + " Hash tuttu ama 1,2,3,4 değil";
                 }
             }
             else
             {
                 Yanit.Onay = 0;
                 Yanit.IslemNo = strOrderID;
-                Yanit.Hata = strMDStatusText;
+                Yanit.Hata = strMDStatusText + " hash tutmadı";
             }
 
+            
             //Session'dan PosID al
-            Yanit.PosID = int.Parse(HttpContext.Current.Session["POSID"].ToString());
+            //Yanit.PosID = int.Parse(HttpContext.Current.Session["POSID"].ToString());
             //Session'daki PosID'yi güncelle
-            HttpContext.Current.Session["POSID"] = "";
+            //HttpContext.Current.Session["POSID"] = "";
 
             return Yanit;
         }

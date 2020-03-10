@@ -172,6 +172,7 @@ namespace PaymentServicesLibrary.IsBankasi
             String TutarKodu = sessionArr[7];
             String ClientIp =   GenelMetotlar.getIP();
 
+
             if (HttpContext.Current.Request.Form["Status"].Equals("Y"))
             {
                 String PosXML = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
@@ -221,8 +222,8 @@ namespace PaymentServicesLibrary.IsBankasi
                     Yanit.Onay = 1;
                     Yanit.IslemNo = ir.VposResponse.AuthCode;
                     Yanit.Hata = "";
-                    Yanit.detay = ir.VposResponse.CurrencyAmount + " " + ir.VposResponse.CurrencyCode;
-                    Yanit.Odeme = double.Parse(Tutar);
+                    Yanit.detay = Tutar.Replace(".",",") + " " + ir.VposResponse.CurrencyCode;
+                    Yanit.Odeme = double.Parse(Tutar)/100;
                     Yanit.Yanit = ir.VposResponse.ResultDetail;
                 }
                 else
@@ -249,6 +250,7 @@ namespace PaymentServicesLibrary.IsBankasi
                 Yanit.Yanit = "İşlem başarısız.";
 
             }
+
 
             /*
             Yanit.PosID = int.Parse(HttpContext.Current.Session["POSID"].ToString());
