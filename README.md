@@ -92,7 +92,7 @@ Akbank, Finansbank İş Bankası ve Garanti Bankası'nın sanal pos entegrasyonl
             PosYanit posYanit = ibsp.Isbank3DDonus(pos);
     ````
     
- - <h2>Moka (Ödeme Operatörü)</h2>
+- <h2>Moka (Ödeme Operatörü)</h2>
 
   - <h3>Gidiş</h3>
 
