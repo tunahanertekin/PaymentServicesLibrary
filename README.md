@@ -6,7 +6,7 @@ Bankaların ve ödeme operatörlerinin sanal pos entegrasyonlarını barındıra
 
 <hr />
 
-<img src="https://raw.githubusercontent.com/tunahanertekin/PaymentServicesLibrary/master/PaymentServicesLibrary/Images/pngs/akbank.png?token=ALEX6Q3WA2CSLIKMHDBP2US6NDGGK" height="50" />
+<img src="https://112paykasa.com/paykasa_upload/2018/09/Akbank-Logo-PNG.png" height="50" />
 
   - <h3>Gidiş</h3>
     
