@@ -113,3 +113,26 @@ Akbank, Finansbank İş Bankası ve Garanti Bankası'nın sanal pos entegrasyonl
             Pos pos = new Pos(0, "DealerCode|Username|Password", "DonusSayfasi.aspx");
             PosYanit posYanit = msp.PosMokaDonus(pos);
     ````
+    
+- <h2>PayU (Ödeme Operatörü)</h2>
+
+  - <h3>Gidiş</h3>
+
+    ````csharp
+            Pos pos = new Pos(0, "Merchant$SecretKey", "DonusSayfasi.aspx");
+            KKart kkart = new KKart("4444333322221111", "12", "20", "123");
+            Kullanici kullanici = new Kullanici("ornekinsan@gmail.com", "Ornek Insan");
+            PosIslem posIslem = new PosIslem("1.25", "0", "aciklama", 0);
+
+            PayUSanalPos msp = new PayUSanalPos();
+            String response = msp.PosPayU(pos, kkart, kullanici, posIslem);
+    ````
+
+  - <h3>Dönüş</h3>
+
+    ````csharp
+            PayUSanalPos msp = new PayUSanalPos();
+            Pos pos = new Pos(0, "Merchant$SecretKey", "DonusSayfasi.aspx");
+            PosYanit posYanit = msp.PosPayUDonus(pos);
+    ````
+
