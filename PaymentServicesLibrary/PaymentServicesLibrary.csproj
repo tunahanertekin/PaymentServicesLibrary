@@ -77,6 +77,34 @@
     <Compile Include="Servisler\Moka\Modeller\PaymentListPaymentDealerRequest.cs" />
     <Compile Include="Servisler\Moka\Modeller\TrxDetail.cs" />
     <Compile Include="Servisler\Moka\MokaSanalPos.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Helper.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\HttpCaller.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Options.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\ApiPaymentRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\AsyncNotificationServiceHashRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\BinV1Request.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\BinV2Request.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\CancelTokenRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\CommonPaymentRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\ConfirmationRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\GetTokenInformationRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\IOSRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\IRNRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\MultipleTokenRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\PointCheckRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\ReportRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\TokenHistoryRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Request\TokenServiceCreateTokenRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Response\ApiPayment3DResponse.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Response\ApiPaymentNon3DResponse.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Response\BkmPaymentResponse.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Response\ConfirmationResponse.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Response\IOSResponse.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Response\IRNResponse.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Response\PointCheckResponse.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\Response\PointCheckWithTokenRequest.cs" />
+    <Compile Include="Servisler\PayU\Modeller\Payu.Core\XmlBuilder.cs" />
+    <Compile Include="Servisler\PayU\PayUSanalPos.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
