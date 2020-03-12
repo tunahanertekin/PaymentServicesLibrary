@@ -1,10 +1,12 @@
 # PaymentServicesLibrary
-Akbank, Finansbank İş Bankası ve Garanti Bankası'nın sanal pos entegrasyonlarını barındıran bir sınıf kütüphanesi. 
+Bankaların ve ödeme operatörlerinin sanal pos entegrasyonlarını barındıran bir sınıf kütüphanesi. 
    
 <br>
 <h1>Kullanım</h1>
 
-- <h2>Akbank</h2>
+<hr />
+
+<img src="https://112paykasa.com/paykasa_upload/2018/09/Akbank-Logo-PNG.png" height="50" />
 
   - <h3>Gidiş</h3>
     
@@ -25,8 +27,12 @@ Akbank, Finansbank İş Bankası ve Garanti Bankası'nın sanal pos entegrasyonl
             Pos pos = new Pos(0, "MerchantId|MerchantPassword", "DonusSayfasi.aspx");
             PosYanit posYanit = asp.PosESTAkbankDonus(pos);
     ````
+    
+<hr />
 
-- <h2>Finansbank</h2>
+<hr />
+
+<img src="https://github.com/tunahanertekin/PaymentServicesLibrary/blob/master/PaymentServicesLibrary/Images/pngs/qnbfinansbank.png?raw=true" height="50" />
 
   - <h3>Gidiş</h3>
 
@@ -47,8 +53,11 @@ Akbank, Finansbank İş Bankası ve Garanti Bankası'nın sanal pos entegrasyonl
             Pos pos = new Pos(0, "MerchantId|MerchantPassword", "DonusSayfasi.aspx");
             PosYanit posYanit = fsp.PosFinansbankDonus(pos);
     ````
+<hr />
 
-- <h2>Garanti Bankası</h2>
+<hr />
+
+<img src="https://github.com/tunahanertekin/PaymentServicesLibrary/blob/master/PaymentServicesLibrary/Images/pngs/garantibankasi.png?raw=true" height="50" />
 
   - <h3>Gidiş</h3>
 
@@ -70,7 +79,11 @@ Akbank, Finansbank İş Bankası ve Garanti Bankası'nın sanal pos entegrasyonl
             PosYanit posYanit = gsp.PosGaranti3DDonus(pos);
     ````
 
-- <h2>İş Bankası</h2>
+<hr />
+
+<hr />
+
+<img src="https://github.com/tunahanertekin/PaymentServicesLibrary/blob/master/PaymentServicesLibrary/Images/pngs/isbankasi.png?raw=true" height="50" />
 
   - <h3>Gidiş</h3>
 
@@ -91,8 +104,12 @@ Akbank, Finansbank İş Bankası ve Garanti Bankası'nın sanal pos entegrasyonl
             Pos pos = new Pos(0, "MerchantId|MerchantPassword", "DonusSayfasi.aspx");
             PosYanit posYanit = ibsp.Isbank3DDonus(pos);
     ````
-    
-- <h2>Moka (Ödeme Operatörü)</h2>
+
+<hr />
+
+<hr />
+
+<img src="https://github.com/tunahanertekin/PaymentServicesLibrary/blob/master/PaymentServicesLibrary/Images/pngs/moka.png?raw=true" height="50" />
 
   - <h3>Gidiş</h3>
 
@@ -113,8 +130,13 @@ Akbank, Finansbank İş Bankası ve Garanti Bankası'nın sanal pos entegrasyonl
             Pos pos = new Pos(0, "DealerCode|Username|Password", "DonusSayfasi.aspx");
             PosYanit posYanit = msp.PosMokaDonus(pos);
     ````
-    
-- <h2>PayU (Ödeme Operatörü)</h2>
+
+<hr />
+
+<hr />
+
+<img src="https://github.com/tunahanertekin/PaymentServicesLibrary/blob/master/PaymentServicesLibrary/Images/pngs/payu.png?raw=true" height="50" />
+
 
   - <h3>Gidiş</h3>
 
@@ -136,3 +158,31 @@ Akbank, Finansbank İş Bankası ve Garanti Bankası'nın sanal pos entegrasyonl
             PosYanit posYanit = msp.PosPayUDonus(pos);
     ````
 
+<hr />
+
+<hr />
+
+<img src="https://seeklogo.com/images/I/iyzico-logo-47FB85296F-seeklogo.com.png" height="50" />
+
+
+  - <h3>Gidiş</h3>
+
+    ````csharp
+            Pos pos = new Pos(0, "ApiKey|SecretKey", "DonusSayfasi.aspx");
+            KKart kkart = new KKart("4444333322221111", "12", "20", "123");
+            Kullanici kullanici = new Kullanici("ornekinsan@gmail.com", "Ornek Insan");
+            PosIslem posIslem = new PosIslem("1.25", "0", "aciklama", 0);
+
+            IyzicoSanalPos msp = new IyzicoSanalPos();
+            String response = msp.PosIyzipay(pos, kkart, kullanici, posIslem);
+    ````
+
+  - <h3>Dönüş</h3>
+
+    ````csharp
+            IyzicoSanalPos msp = new IyzicoSanalPos();
+            Pos pos = new Pos(0, "ApiKey|SecretKey", "DonusSayfasi.aspx");
+            PosYanit posYanit = msp.PosIyzipayDonus(pos);
+    ````
+
+<hr />
